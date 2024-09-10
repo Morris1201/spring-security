@@ -5,6 +5,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.password.NoOpPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 
 @Configuration
@@ -12,19 +14,24 @@ import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 public class MySecurityConfig {
 
     @Bean
-    public InMemoryUserDetailsManager userDetailsManager() {
-        UserDetails userTest1 = User
-                .withUsername("test1")
-                .password("{noop}111")
-                .roles("ADMIN", "USER")
-                .build();
-
-        UserDetails userTest2 = User
-                .withUsername("test2")
-                .password("{bcrypt}$2a$12$ql26r4md5sL0r.o1/CLDbe18GcBBemisvQUYq4C1U.kVgwI46f6Fi")
-                .roles("USER")
-                .build();
-
-        return new InMemoryUserDetailsManager(userTest1, userTest2);
+    public PasswordEncoder passwordEncoder() {
+        return NoOpPasswordEncoder.getInstance();
     }
+
+//    @Bean
+//    public InMemoryUserDetailsManager userDetailsManager() {
+//        UserDetails userTest1 = User
+//                .withUsername("test1")
+//                .password("{noop}111")
+//                .roles("ADMIN", "USER")
+//                .build();
+//
+//        UserDetails userTest2 = User
+//                .withUsername("test2")
+//                .password("{bcrypt}$2a$12$ql26r4md5sL0r.o1/CLDbe18GcBBemisvQUYq4C1U.kVgwI46f6Fi")
+//                .roles("USER")
+//                .build();
+//
+//        return new InMemoryUserDetailsManager(userTest1, userTest2);
+//    }
 }
