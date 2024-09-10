@@ -36,8 +36,6 @@ public class MyUserDetailsService implements UserDetailsService {
 
             // 轉換成 Spring Security 指定的 User 格式
             return new User(memberEmail, memberPassword, authorities);
-
-            // 測試
         }
     }
 }
