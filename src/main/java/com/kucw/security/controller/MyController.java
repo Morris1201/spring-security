@@ -19,7 +19,7 @@ public class MyController {
         // 取得使用者權限
         Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
 
-        return "Hello " + username + "!";
+        return "Hello " + username + "! 你的權限為 : " + authorities;
     }
 
     @GetMapping("/welcome")
